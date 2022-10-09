@@ -7,13 +7,20 @@ const Filtering = (props) => {
   const [filtersData, setFiltersData] = useState({});
   const {selectedFiltersCb, productsData} = props;
 
+
+  // Callback z zaznaczoną opcją z "selecta" od filtrów.
   const selectedFiltersCallback = (obj) => { 
     const newObj = {...selectedFilters};
     newObj[obj.filterVName] = obj
     setSelectedFilters(newObj)
   }
 
-  const getFiltersData = async (data) => {
+  
+  /**
+   * Funkcja tworząca obiekt z danymi wykorzystywanymi do stworzenia filtrów.
+   * @param {Object} data - obiekt zawierający pełny response z API.
+   */
+  const getFiltersData = (data) => {
     const _filtersData = {brand: [], category: []};
     data.forEach(item => {
       _filtersData['brand'].push(item.brand);  

@@ -7,6 +7,7 @@ const FilterSelect = (props) => {
   const [selectedItems, setSelectedItems] = useState([]);
 
 
+  // Funkcja "po kliknięciu" w opcję z selecta
   const selectItemHandler = (e) => {
     e.currentTarget.classList.toggle('--selected');
     setIsOpened(!isOpened);

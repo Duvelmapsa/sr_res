@@ -20,6 +20,11 @@ function App() {
   //   setSettings(data);
   // }
 
+  /** 
+   * Funkcja dzieląca tablicę produktów na mniejsze tablice / produkty per strona.
+   * @param {Object} products - objekt ze wszystkimi produktami
+   * @param {number} limit - określa ilość produktów w tablicy / na stronę.
+  */ 
   const chunkProductsForPages = (products, limit) => {
     const newProductsArray = products.reduce((resultArray, item, index) => { 
       const chunkIndex = Math.floor(index/limit);
@@ -32,6 +37,9 @@ function App() {
     return newProductsArray;
   }
 
+  /**
+   * Funkcja odpowiedzialna za pobieranie danych.
+   */
   const getProducts = async () => {
     const filter_url = filterProducts(filters);
 
@@ -46,6 +54,12 @@ function App() {
     setProducts(chunked_data[0]);
   }
 
+  /**
+   * Funkcja odpowiedzialna za stworzenie "doklejanej" wartości z zaznaczonymi filtrami
+   * do url w getProducts();
+   * @param {Object} filters - obiekt z zaznaczonymi filtrami. 
+   * @returns - zwraca "doklejkę" do url.
+   */
   const filterProducts = (filters) => {
     let selected_filters = Object.entries(filters).filter((key, item) => {return key[1].value.length > 0});
     selected_filters = selected_filters.map(item => {return item[1]});
@@ -56,10 +70,16 @@ function App() {
     return filters_url;
   }
 
+  // Callback z <Filtering />
   const selectedFiltersCb = (obj) => {
     setFilters(obj);
   }
 
+  /**
+   * Funkcja wykonywana po kliknięciu "Wczytaj więcej produktów".
+   * Zmienia stan "currentPage" i dokleja do tablicy wyświetlanych produktów
+   * produkty z kolejnej strony.
+   */
   const loadMoreProducts = () => {
     setCurrentPage(currentPage+1)
     if (!products.length) return false;
