@@ -1,0 +1,95 @@
+.filtering {
+  margin: 25px 0;
+}
+
+.filtering__filtersWrapper {
+  display: flex;
+  margin: 0 -5px;
+}
+
+@media (max-width: 756px) {
+  .filtering__filtersWrapper {
+    flex-flow: column;
+  }
+}
+
+.filter {
+  margin: 0 5px;
+  position: relative;
+  user-select: none;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 756px) {
+  .filter {
+    margin-bottom: 10px;
+  }
+}
+
+.filter__trigger {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 756px) {
+  .filter__trigger {
+    width: 100%;
+  } 
+}
+
+.filter.--opened .filter__trigger{
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid transparent;
+}
+
+.filter ul {
+  display: none;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  border: 1px solid #ddd;
+  border-top: none;
+  margin-top: -8px;
+  padding-top: 8px;
+  border-radius: 0 0 10px 10px;
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  overflow: hidden;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1;
+  background: #fff;
+}
+
+.filter.--opened ul {
+  display: block;
+}
+
+.filter__link {
+  padding: 10px;
+  display: block;
+  color: #333;
+  position: relative;
+  
+}
+
+.filter__link:hover {
+  background: #eee;
+  color: #333;
+}
+
+.filter__link.--selected:after {
+  content: 'x';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000;
+}
